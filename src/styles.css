@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+/**** COLORS ****/
+:root {
+  --color-primary: #00c1fe;
+  --color-background: #e9f0f5;
+  --color-text: #0f0e0e;
+}
+html {
+  box-sizing: border-box;
+  interpolate-size: allow-keywords;
+}
+
+* {
+  line-height: calc(1em + 0.5rem);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+  font-family: "Inter", sans-serif;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Form fields grow or shrink according to content */
+/* combine with min- and max- block-size and inline-size */
+textarea,
+select,
+input {
+  font: inherit;
+  field-sizing: content;
+}
+
+/**** BUTTONS ****/
+button {
+  outline: none;
+  border: none;
+  background-color: var(--color-primary);
+  box-shadow: 0 2px 5px #00000012;
+  border-radius: 6px;
+  padding: 0.25rem 0.5rem;
+  color: #ffffff;
+  font-weight: bold;
+  cursor: pointer;
+}

@@ -1,0 +1,25 @@
+header {
+  background-color: #ffffff;
+  box-shadow: 0 5px 14px #00000012;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+}
+
+nav {
+  margin-left: 2rem;
+  display: flex;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.logo {
+  width: 185px;
+  height: 38.63px;
+}
+
+.content {
+  padding: 1rem;
+}

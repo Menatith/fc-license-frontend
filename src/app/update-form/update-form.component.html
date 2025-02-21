@@ -1,0 +1,85 @@
+<h1>Edit License</h1>
+<form #updateForm="ngForm" (ngSubmit)="updateLicense()">
+  <div class="form-info">
+    <div class="form-display">
+      <div class="form-label">License ID</div>
+      <div>{{ license.id }}</div>
+    </div>
+
+    <div class="form-display">
+      <div class="form-label">Customer ID</div>
+      <div>{{ license.customerId }}</div>
+    </div>
+  </div>
+
+  <div class="form-content-wrapper">
+    <div class="form-group">
+      <label for="customer-name">Customer Name</label>
+      <!-- ADD PROTECTION -->
+      <input
+        type="text"
+        maxlength="50"
+        class="form-control"
+        id="customer-name"
+        required
+        [(ngModel)]="license.customerName"
+        name="customerName"
+        #name="ngModel"
+      />
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name is required
+      </div>
+    </div>
+
+    <div class="form-display">
+      <div class="form-label">Valid From</div>
+      <div class="valid-from-value">{{ license.validFrom }}</div>
+    </div>
+
+    <div class="form-group">
+      <label for="customer-mail-address">Customer Email</label>
+      <!-- [email] implements Angular EmailValidator -->
+      <input
+        type="email"
+        maxlength="50"
+        class="form-control"
+        id="customer-mail-address"
+        required
+        [(ngModel)]="license.customerMailAddress"
+        name="customer-mail-address"
+        #email="ngModel"
+        [email]="true"
+      />
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
+        Email is invalid
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="valid-until">Valid Until</label>
+      <input
+        type="date"
+        class="form-control"
+        id="valid-until"
+        [(ngModel)]="license.validUntil"
+        name="valid-until"
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="license-type">License Type</label>
+      <select
+        class="form-control"
+        id="license-type"
+        [(ngModel)]="license.licenseType"
+        name="license-type"
+      >
+        @for(licenseType of licenseTypes; track licenseType) {
+        <option [value]="licenseType">{{ licenseType }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="!updateForm.form.valid">Submit</button>
+</form>

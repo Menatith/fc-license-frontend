@@ -1,0 +1,67 @@
+<h1>License Overview</h1>
+<div class="table-wrapper">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>License Key</th>
+        <th>Customer Email</th>
+        <th>Usage</th>
+        <th>License Type</th>
+        <th>Version</th>
+        <th>Status</th>
+        <th>From</th>
+        <th>Until</th>
+        <th>Blocked</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Improve this so a loading spinner can be implemented as well -->
+      @if(licenseList.length === 0) {
+      <tr>
+        <td colspan="3">No data found</td>
+      </tr>
+      } @for(license of licenseList; track license.id) {
+      <tr>
+        <td>{{ license.customerName }}</td>
+        <td class="license-key">
+          <button popovertarget="lk-popover">View</button>
+          <div popover id="lk-popover">{{ license.licenseKey }}</div>
+        </td>
+        <td>{{ license.customerMailAddress }}</td>
+        <td class="usage">
+          <div class="usage-inner">
+            {{ license.pollHistory.activeUserCount }} /
+            {{ license.numberOfUsersLicensed }}
+          </div>
+        </td>
+        <td>{{ license.licenseType }}</td>
+        <td>{{ license.pollHistory.version }}</td>
+        <td>{{ license.renewalStatus.charAt(0) }}</td>
+        <td>'{{ license.validFrom | date : "yy-MM-dd" }}</td>
+        <td>'{{ license.validUntil | date : "yy-MM-dd" }}</td>
+        <td>{{ license.blocked ? "Yes" : "No" }}</td>
+        <td>
+          <a [routerLink]="['/update', license.id]">Edit</a>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    @if(this.page > 0){
+    <button (click)="updatePage(this.page - 1)">Previous Page</button>
+    } @for(page of pageCounter; track page) {
+    <button
+      [ngClass]="{ activePage: this.page == page }"
+      (click)="updatePage(page)"
+    >
+      {{ page + 1 }}
+    </button>
+    } @if (this.page < (this.totalPages - 1)) {
+    <button (click)="updatePage(this.page + 1)">Next Page</button>
+    }
+  </div>
+</div>
